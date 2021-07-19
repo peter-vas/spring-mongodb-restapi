@@ -26,41 +26,41 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-	@Bean
-	CommandLineRunner runner ( StudentRepository repository, MongoTemplate mongoTemplate ){
-		return args ->{
-
-
-			Address address = new Address( "Hungary", "Budapest", "1000" );
-			String email = "demo@gmail.com";
-			Student student = new Student(
-					"David",
-					"Furry",
-					email,
-					Gender.MALE,
-					address,
-					Arrays.asList( "Computer Science" ),
-					BigDecimal.TEN,
-					LocalDateTime.now()
-
-			);
-
-
-			Optional<Student> students = repository.findStudentByEmail( email );
-			if ( students.isPresent() ){
-				System.out.println( " already exists" );
-			}else{
-				repository.insert( student );
-
-			}
-
-
-
-
-			//usingMongoTemplateAndQuery( repository, mongoTemplate, email, student );
-
-		};
-	}
+//	@Bean
+//	CommandLineRunner runner ( StudentRepository repository, MongoTemplate mongoTemplate ){
+//		return args ->{
+//
+//
+//			Address address = new Address( "Hungary", "Budapest", "1000" );
+//			String email = "demo@gmail.com";
+//			Student student = new Student(
+//					"David",
+//					"Furry",
+//					email,
+//					Gender.MALE,
+//					address,
+//					Arrays.asList( "Computer Science" ),
+//					BigDecimal.TEN,
+//					LocalDateTime.now()
+//
+//			);
+//
+//
+//			Optional<Student> students = repository.findStudentByEmail( email );
+//			if ( students.isPresent() ){
+//				System.out.println( " already exists" );
+//			}else{
+//				repository.insert( student );
+//
+//			}
+//
+//
+//
+//
+//			//usingMongoTemplateAndQuery( repository, mongoTemplate, email, student );
+//
+//		};
+//	}
 
 	private void usingMongoTemplateAndQuery( StudentRepository repository, MongoTemplate mongoTemplate, String email, Student student ) {
 		Query query = new Query();
